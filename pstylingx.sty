@@ -56,18 +56,18 @@
 %%%
 %%% Public variable storage
 %%%
-\directlua{
+\luaexec{
     psxVariables = {}
 }
 \NewDocumentCommand\psxSetVariable{m m}
 {%
-    \directlua{
+    \luaexec{
         psxVariables["#1"] = "#2"
     }%
 }
 \NewDocumentCommand\psxGetVariable{m}
 {%
-    \directlua{
+    \luaexec{
         tex.print(psxVariables["#1"])
     }%
 }
@@ -76,26 +76,52 @@
 %%% Private variable storage
 %%%
 \makeatletter
-    \directlua{
+    \luaexec{
         p_psxVariables = {}
     }
     \NewDocumentCommand\@psxSetVariable{m m}
     {%
-        \directlua{
+        \luaexec{
             p_psxVariables["#1"] = "#2"
         }%
     }
     \NewDocumentCommand\@psxGetVariable{m}
     {%
-        \directlua{
-            tex.print(p_psxVariables["#1"])
+        \luaexec{
+            tex.sprint(p_psxVariables["#1"])
         }%
     }
 \makeatother
 
+%%%
+%%% Footnotes
+%%%
 
+\newcounter{psxfootnote}
 
+\NewDocumentEnvironment{psxFootenv}{}
+{%
+    \setcounter{psxfootnote}{\thefootnote}%
+    \luaexec{
+        p_psxFootnotes = {}
+    }%
+}
+{%
+    \setcounter{footnote}{\thepsxfootnote}%
+    \luaexec{
+        for idx, fn in pairs(p_psxFootnotes) do
+            tex.print(string.format('\\stepcounter{footnote}\\footnotetext{\%s}', fn))
+        end
+    }%
+}
 
+\NewDocumentCommand\psxFootnote{m}
+{%
+    \footnotemark%
+    \luaexec{
+        p_psxFootnotes[\thefootnote] = "#1"
+    }%
+}
 
 
 
