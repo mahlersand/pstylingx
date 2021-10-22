@@ -1,1 +1,52 @@
 \ProvidesPackage{pstylingx}[2021 Physics Styling]
+
+%%% Scripting and macros
+
+\RequirePackage{xparse}                     % Better functions
+\RequirePackage{luacode}                    % Convenience macros for LuaTeX
+\RequirePackage{import}                     % Make imports not includes
+
+%%% Basic typesetting helpers
+
+\RequirePackage{fontspec}                   % Font switching
+\RequirePackage{polyglossia}                % Modern babel replacement
+\RequirePackage{listings}                   % Listings
+\RequirePackage{verbatim}                   % Verbatim envs, also comments
+\RequirePackage{float}                      % scale, shift, rotate, ... floats (tables, images, ...)
+\RequirePackage{color}                      % colors
+\RequirePackage{pdfpages}                   % Directly include pdf documents
+\RequirePackage{biblatex}                   % Bibliography
+
+%%% Basic mathematics
+
+\RequirePackage{amsmath}                    % Additional mathematical formulas and environments
+\RequirePackage{amssymb}                    % Additional mathematical symbols
+\RequirePackage{amsfonts}                   % Additional mathematical fonts
+\RequirePackage{unicode-math}               % Better font switching for maths
+
+%%% Specialised tools for maths
+
+\RequirePackage{bigints}                    % Bigger integers
+\RequirePackage{esint}                      % Mooooooore integrals
+\RequirePackage{cancel}                     % Mostly for cancelto
+\RequirePackage{tensor}                     % Fucking tensors
+\RequirePackage[separate-uncertainty=true]{siunitx} % Support for quantities with errors and dimension
+
+%%% Graphics
+
+\RequirePackage{tikz}                       % Drawing
+\RequirePackage{graphicx}                   % Images
+
+%%% Physics
+
+\RequirePackage{physics}                    % Physics package for beatiful vectors, matrices, ...
+
+
+%%% Has to be the last one, what an edgy package :D
+
+\RequirePackage{hyperref}
+
+
+
+
+
