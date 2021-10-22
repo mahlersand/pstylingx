@@ -47,6 +47,56 @@
 \RequirePackage{hyperref}
 
 
+%%%%%
+%%%%%
+%%%%%  Begin scripting
+%%%%%
+%%%%%
+
+%%%
+%%% Public variable storage
+%%%
+\directlua{
+    psxVariables = {}
+}
+\NewDocumentCommand\psxSetVariable{m m}
+{%
+    \directlua{
+        psxVariables["#1"] = "#2"
+    }%
+}
+\NewDocumentCommand\psxGetVariable{m}
+{%
+    \directlua{
+        tex.print(psxVariables["#1"])
+    }%
+}
+
+%%%
+%%% Private variable storage
+%%%
+\makeatletter
+    \directlua{
+        p_psxVariables = {}
+    }
+    \NewDocumentCommand\@psxSetVariable{m m}
+    {%
+        \directlua{
+            p_psxVariables["#1"] = "#2"
+        }%
+    }
+    \NewDocumentCommand\@psxGetVariable{m}
+    {%
+        \directlua{
+            tex.print(p_psxVariables["#1"])
+        }%
+    }
+\makeatother
+
+
+
+
+
 
 
 
